@@ -612,6 +612,10 @@ extension Filter
 			startIndex = stringInput.index(stringInput.endIndex, offsetBy: slice)
 		}
 
+		if(stringInput.count == 0) {
+            return .string(String(stringInput))
+        }
+
 		let length = parameters.count == 2 ? parameters[1].integerValue ?? 1 : 1
 		let effectiveLength = min(length, stringInput.distance(from: startIndex, to: stringInput.endIndex))
 		let endIndex = stringInput.index(startIndex, offsetBy: effectiveLength)
