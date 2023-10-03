@@ -13,6 +13,12 @@ Pod::Spec.new do |spec|
   spec.macos.deployment_target = '10.12'
   spec.macos.frameworks = ['Foundation']
 
+  spec.tvos.deployment_target = '17.0'
+  spec.tvos.frameworks = ['Foundation']
+
+  spec.watchos.deployment_target = '8.0'
+  spec.watchos.frameworks = ['Foundation']
+
   spec.source_files = 'Sources/LiquidKit/*.{h,m,swift}'
   spec.module_name = 'LiquidKit'
   

@@ -749,7 +749,9 @@ class TagFor: Tag, IterationTag
 
 		if let limit = (compiledExpression["limit"] as? Token.Value)?.integerValue
 		{
-			values.removeSubrange(limit...)
+            if(values.count > limit) {
+                values.removeSubrange(limit...)
+            }
 		}
 
 		if compiledExpression["reversed"] as? Token.Value == .bool(true)
