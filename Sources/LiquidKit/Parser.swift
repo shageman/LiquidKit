@@ -356,7 +356,7 @@ open class Parser
 		let tag: Tag?
 
 		/// The parent scope level, that contains the receiver scope. Is only `nil` on the root scope level.
-		let parentScope: Scope?
+    	weak var parentScope: Scope?
 		
 		/// Controls whether the scope allows output statements to be appended to it. Setting this value will also set
 		/// the `outputState` of all children scopes recursively.
