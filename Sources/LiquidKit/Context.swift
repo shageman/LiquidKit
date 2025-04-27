@@ -6,12 +6,6 @@
 //
 //
 import Foundation
-import CoreFoundation
-
-import Foundation
-import Foundation.NSString
-import Foundation.NSRegularExpression
-import Foundation.NSRange
 
 /// A container for template variables.
 open class Context
@@ -112,7 +106,6 @@ open class Context
 	internal func parseString(_ token: String, onlyIfLiteral: Bool = false) -> Token.Value?
 	{
 		let trimmedToken = token.trimmingWhitespaces
-		let nsToken = token as NSString
 
 		if trimmedToken == "true"
 		{
@@ -122,11 +115,12 @@ open class Context
 		{
 			return .bool(false)
 		}
-		else if let result = NSRegularExpression.rangeRegex.firstMatch(in: token, options: [],
-																	   range: NSRange(location: 0, length: nsToken.length)),
-			result.numberOfRanges == 3,
-			let lowerBound = parseString(nsToken.substring(with: result.range(at: 1)))?.integerValue,
-			let upperBound = parseString(nsToken.substring(with: result.range(at: 2)))?.integerValue
+		else if let regex = try? Regex(#"(\d+)\.\.\.(\d+)"#),
+			  let match = try? regex.firstMatch(in: token),
+			  let lowerBoundRange = match[1].range,
+			  let upperBoundRange = match[2].range,
+			  let lowerBound = Int(token[lowerBoundRange]),
+			  let upperBound = Int(token[upperBoundRange])
 		{
 			return .range(lowerBound...upperBound)
 		}

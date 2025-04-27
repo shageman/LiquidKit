@@ -6,9 +6,6 @@
 //
 //
 import Foundation
-import Foundation.NSString
-import Foundation.NSRegularExpression
-import Foundation.NSRange
 
 extension String {
 
@@ -143,46 +140,31 @@ extension String {
 
 	var splitKeyPath: (key: String, index: Int?, remainder: String?)?
 	{
-		let nsKeyPath = self as Foundation.NSString
 		let pattern = "(\\w+)(\\[(\\d+)\\])?\\.?"
-
-		let regex = try! Foundation.NSRegularExpression(pattern: pattern, options: [])
-
-		guard
-			let match = regex.firstMatch(in: self, options: [], range: Foundation.NSRange(location: 0, length: nsKeyPath.length)),
-			match.range(at: 1).location != Foundation.NSNotFound
-		else
-		{
+		
+		guard let regex = try? Regex(pattern),
+			  let match = try? regex.firstMatch(in: self) else {
 			return nil
 		}
-
-		let key = nsKeyPath.substring(with: match.range(at: 1))
-		let remainder: String?
-
-		if match.range.upperBound < nsKeyPath.length
-		{
-			remainder = nsKeyPath.substring(from: match.range.upperBound)
+		
+		guard let keyRange = match[1].range,
+			  let key = self[keyRange].string else {
+			return nil
 		}
-		else
-		{
+		
+		let remainder: String?
+		if match.range.upperBound < endIndex {
+			remainder = String(self[match.range.upperBound...])
+		} else {
 			remainder = nil
 		}
-
-		if match.range(at: 3).location != Foundation.NSNotFound, let index = Int(nsKeyPath.substring(with: match.range(at: 3)))
-		{
+		
+		if let indexRange = match[3].range,
+		   let indexString = self[indexRange].string,
+		   let index = Int(indexString) {
 			return (key, index, remainder)
-		}
-		else
-		{
+		} else {
 			return (key, nil, remainder)
 		}
-	}
-}
-
-extension Foundation.NSString
-{
-	var fullRange: Foundation.NSRange
-	{
-		return Foundation.NSRange(location: 0, length: length)
 	}
 }
