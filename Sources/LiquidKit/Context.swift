@@ -6,6 +6,7 @@
 //
 //
 import Foundation
+import CoreFoundation
 
 /// A container for template variables.
 open class Context
@@ -117,7 +118,7 @@ open class Context
 			return .bool(false)
 		}
 		else if let result = NSRegularExpression.rangeRegex.firstMatch(in: token, options: [],
-																	   range: NSMakeRange(0, nsToken.length)),
+																	   range: NSRange(location: 0, length: nsToken.length)),
 			result.numberOfRanges == 3,
 			let lowerBound = parseString(nsToken.substring(with: result.range(at: 1)))?.integerValue,
 			let upperBound = parseString(nsToken.substring(with: result.range(at: 2)))?.integerValue

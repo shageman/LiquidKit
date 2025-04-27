@@ -6,6 +6,7 @@
 //
 //
 import Foundation
+import CoreFoundation
 
 extension String {
 
@@ -146,7 +147,7 @@ extension String {
 		let regex = try! NSRegularExpression(pattern: pattern, options: [])
 
 		guard
-			let match = regex.firstMatch(in: self, options: [], range: nsKeyPath.fullRange),
+			let match = regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: nsKeyPath.length)),
 			match.range(at: 1).location != NSNotFound
 		else
 		{
