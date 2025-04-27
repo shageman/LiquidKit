@@ -20,7 +20,7 @@ let package = Package(
     targets: [
         .target(
             name: "LiquidKit",
-            dependencies: ["swift-html-entities"],
+            dependencies: ["HTMLEntities"],
             path: "Sources"),
         .testTarget(
             name: "LiquidKitTests",
