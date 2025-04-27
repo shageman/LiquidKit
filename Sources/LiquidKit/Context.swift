@@ -8,6 +8,11 @@
 import Foundation
 import CoreFoundation
 
+import Foundation
+import Foundation.NSString
+import Foundation.NSRegularExpression
+import Foundation.NSRange
+
 /// A container for template variables.
 open class Context
 {

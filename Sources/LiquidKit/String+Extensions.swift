@@ -6,6 +6,9 @@
 //
 //
 import Foundation
+import Foundation.NSString
+import Foundation.NSRegularExpression
+import Foundation.NSRange
 
 extension String {
 
