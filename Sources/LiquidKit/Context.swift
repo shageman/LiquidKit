@@ -5,6 +5,8 @@
 //  Created by YourtionGuo on 28/06/2017.
 //
 //
+import Foundation
+
 /// A container for template variables.
 open class Context
 {
