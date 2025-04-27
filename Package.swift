@@ -21,10 +21,10 @@ let package = Package(
         .target(
             name: "LiquidKit",
             dependencies: ["HTMLEntities"],
-            path: "Sources/LiquidKit"),
+            path: "Sources"),
         .testTarget(
             name: "LiquidKitTests",
             dependencies: ["LiquidKit"],
-            path: "Tests/LiquidKitTests")
+            path: "Tests")
     ]
 ) 
