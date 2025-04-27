@@ -6,6 +6,7 @@
 //
 //
 import Foundation
+import Foundation.Decimal
 
 /// A container for template variables.
 open class Context
