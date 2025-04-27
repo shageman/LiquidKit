@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import STRFTimeFormatter
 import HTMLEntities
 
 /// A class representing a filter. Filters transform `Token.Value` objects into other `Token.Value` objects, and might
@@ -209,10 +208,10 @@ extension Filter
 			return .nil
 		}
 
-		let strFormatter = STRFTimeFormatter()
-		strFormatter.setFormatString(formatString)
-
-		if let dateString = strFormatter.string(from: date!)
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = formatString
+		
+		if let dateString = dateFormatter.string(from: date!)
 		{
 			return .string(dateString)
 		}

@@ -7,7 +7,6 @@ target 'LiquidKit' do
 
   # Pods for LiquidKit
   pod 'HTMLEntities', :git => 'https://github.com/IBM-Swift/swift-html-entities.git'
-  pod 'STRFTimeFormatter', :git => 'https://github.com/brunophilipe/STRFTimeFormatter.git'
 
   target 'LiquidKitTests' do
     inherit! :search_paths
