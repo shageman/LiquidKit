@@ -6,7 +6,6 @@
 //
 //
 import Foundation
-import CoreFoundation
 
 extension String {
 
@@ -141,14 +140,14 @@ extension String {
 
 	var splitKeyPath: (key: String, index: Int?, remainder: String?)?
 	{
-		let nsKeyPath = self as NSString
+		let nsKeyPath = self as Foundation.NSString
 		let pattern = "(\\w+)(\\[(\\d+)\\])?\\.?"
 
-		let regex = try! NSRegularExpression(pattern: pattern, options: [])
+		let regex = try! Foundation.NSRegularExpression(pattern: pattern, options: [])
 
 		guard
-			let match = regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: nsKeyPath.length)),
-			match.range(at: 1).location != NSNotFound
+			let match = regex.firstMatch(in: self, options: [], range: Foundation.NSRange(location: 0, length: nsKeyPath.length)),
+			match.range(at: 1).location != Foundation.NSNotFound
 		else
 		{
 			return nil
@@ -166,7 +165,7 @@ extension String {
 			remainder = nil
 		}
 
-		if match.range(at: 3).location != NSNotFound, let index = Int(nsKeyPath.substring(with: match.range(at: 3)))
+		if match.range(at: 3).location != Foundation.NSNotFound, let index = Int(nsKeyPath.substring(with: match.range(at: 3)))
 		{
 			return (key, index, remainder)
 		}
@@ -177,10 +176,10 @@ extension String {
 	}
 }
 
-extension NSString
+extension Foundation.NSString
 {
-	var fullRange: NSRange
+	var fullRange: Foundation.NSRange
 	{
-		return NSMakeRange(0, length)
+		return Foundation.NSRange(location: 0, length: length)
 	}
 }
