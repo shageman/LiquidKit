@@ -4,10 +4,10 @@ import PackageDescription
 let package = Package(
     name: "LiquidKit",
     platforms: [
-        .iOS(.v10),
-        .macOS(.v10_12),
-        .tvOS(.v17),
-        .watchOS(.v8)
+        .iOS(.v13),
+        .macOS(.v10_15),
+        .tvOS(.v13),
+        .watchOS(.v6)
     ],
     products: [
         .library(
@@ -26,5 +26,6 @@ let package = Package(
             name: "LiquidKitTests",
             dependencies: ["LiquidKit"],
             path: "Tests")
-    ]
+    ],
+    cLanguageStandard: .c11
 ) 
