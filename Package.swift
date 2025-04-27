@@ -15,7 +15,7 @@ let package = Package(
             targets: ["LiquidKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/shageman/swift-html-entities", from: "3.0.0")
+        .package(url: "https://github.com/shageman/swift-html-entities", from: "4.0.0")
     ],
     targets: [
         .target(
